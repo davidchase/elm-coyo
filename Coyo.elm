@@ -1,6 +1,7 @@
 module Coyo exposing
   ( liftCoyo
   , fmap
+  , chain
   , lowerCoyo
   )
 
@@ -23,6 +24,13 @@ fmap fn coyo =
     case coyo of
         Coyoneda f val ->
             Coyoneda (fn << f) val
+            
+            
+chain fn coyo =
+    case coyo of
+        Coyoneda f val ->
+            liftCoyo <| concatMap (lowerCoyo << fn << f) val
+
 
 
 lowerCoyo : Coyoneda (a -> b) (List a) -> List b
