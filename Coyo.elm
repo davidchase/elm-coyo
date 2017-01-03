@@ -33,7 +33,7 @@ chain fn coyo =
             liftCoyo <| concatMap (lowerCoyo << fn << f) val
 
 ap f g =
-    chain (\x -> fmap x <| g) <| f
+    chain (\fn -> fmap fn <| g) <| f
 
 lowerCoyo : Coyoneda (a -> b) (List a) -> List b
 lowerCoyo coyo =
