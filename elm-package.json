@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "summary": "elm-coyo: coyoneda experiment in elm",
-    "repository": "https://github.com/user/project.git",
+    "repository": "https://github.com/davidchase/elm-coyo.git",
     "license": "BSD3",
     "source-directories": [
         "."
