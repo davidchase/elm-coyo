@@ -6,7 +6,8 @@ IMO: A good way to learn a new language or tool is to implement something not to
 
 ## Todo
 - [ ] Function Signatures
-- [ ] More than just a Functor... (ap, pure, etc)
+- [x] More than just a Functor... (ap, pure, etc)
+- [ ] More than just a Functor w/ ap, chain
 
 ### Inspiration
 
