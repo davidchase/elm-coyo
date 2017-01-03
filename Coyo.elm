@@ -2,6 +2,7 @@ module Coyo exposing
   ( liftCoyo
   , fmap
   , chain
+  , ap
   , lowerCoyo
   )
 
