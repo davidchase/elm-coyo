@@ -18,7 +18,7 @@ liftCoyo =
     Coyoneda identity
 
 
-fmap : (a -> b) -> Coyoneda (a -> a) a -> Coyoneda (a -> b) a
+fmap : (b -> c) -> Coyoneda (a -> b) d -> Coyoneda (a -> c) d
 fmap fn coyo =
     case coyo of
         Coyoneda f val ->
