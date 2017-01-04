@@ -48,6 +48,9 @@ pure : b -> Coyoneda (a -> a) (List b)
 pure =
     liftCoyo << toList
 
+empty : Coyoneda (a -> a) (List b)
+empty =
+    liftCoyo []
 
 lowerCoyo : Coyoneda (a -> b) (List a) -> List b
 lowerCoyo coyo =
