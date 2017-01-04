@@ -26,12 +26,13 @@ fmap fn coyo =
         Coyoneda f val ->
             Coyoneda (fn << f) val
             
-            
+chain : (b -> Coyoneda (a -> b1) (List a)) -> Coyoneda (a1 -> b) (List a1) -> Coyoneda (a2 -> a2) (List b1)
 chain fn coyo =
     case coyo of
         Coyoneda f val ->
             liftCoyo <| concatMap (lowerCoyo << fn << f) val
 
+ap : Coyoneda (a -> b -> c) (List a) -> Coyoneda (a1 -> b) (List a1) -> Coyoneda (a2 -> a2) (List c)
 ap f g =
     chain (\fn -> fmap fn <| g) <| f
 
