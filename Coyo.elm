@@ -41,6 +41,8 @@ toList : a -> List a
 toList fn =
     fn :: []
 
+concat : Coyoneda (a -> b) (List a) -> Coyoneda (a1 -> b) (List a1) -> Coyo.Coyoneda (a2 -> a2) (List b)
+concat u v = liftCoyo <| append (lowerCoyo u) <| lowerCoyo v
 
 pure : b -> Coyoneda (a -> a) (List b)
 pure =
