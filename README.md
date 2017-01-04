@@ -5,7 +5,7 @@ Coyoneda experiment in elm
 IMO: A good way to learn a new language or tool is to implement something not too trivial
 
 ## Todo
-- [ ] Function Signatures
+- [x] Function Signatures
 - [x] Make it a Monad
 - [x] Verify Laws
 - [ ] Add laws to repo
