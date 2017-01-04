@@ -15,6 +15,7 @@ IMO: A good way to learn a new language or tool is to implement something not to
    - [x] Chain
    - [x] Functor
    - [x] Semigroup
+   - [x] Monoid
 - [ ] Add Demo / examples
 
 ### Inspiration
