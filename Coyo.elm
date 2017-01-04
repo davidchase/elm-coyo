@@ -35,6 +35,16 @@ chain fn coyo =
 ap f g =
     chain (\fn -> fmap fn <| g) <| f
 
+toList : a -> List a
+toList fn =
+    fn :: []
+
+
+pure : b -> Coyoneda (a -> a) (List b)
+pure =
+    liftCoyo << toList
+
+
 lowerCoyo : Coyoneda (a -> b) (List a) -> List b
 lowerCoyo coyo =
     case coyo of
