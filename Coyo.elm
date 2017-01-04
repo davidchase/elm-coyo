@@ -3,6 +3,7 @@ module Coyo exposing
   , fmap
   , chain
   , ap
+  , pure
   , lowerCoyo
   )
 
