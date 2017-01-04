@@ -8,7 +8,7 @@ IMO: A good way to learn a new language or tool is to implement something not to
 - [ ] Function Signatures
 - [x] Make it a Monad
 - [x] Verify Laws
-- [ ] Add laws
+- [ ] Add laws to repo
    - [x] Monad
    - [x] Applicative
    - [x] Apply
