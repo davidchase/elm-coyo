@@ -14,6 +14,7 @@ IMO: A good way to learn a new language or tool is to implement something not to
    - [x] Apply
    - [x] Chain
    - [x] Functor
+   - [x] Semigroup
 - [ ] Add Demo / examples
 
 ### Inspiration
