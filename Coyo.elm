@@ -4,6 +4,8 @@ module Coyo exposing
   , chain
   , ap
   , pure
+  , empty
+  , concat
   , lowerCoyo
   )
 
