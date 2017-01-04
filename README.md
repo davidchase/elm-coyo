@@ -6,8 +6,14 @@ IMO: A good way to learn a new language or tool is to implement something not to
 
 ## Todo
 - [ ] Function Signatures
-- [x] More than just a Functor... (ap, pure, etc)
-- [ ] More than just a Functor w/ ap, chain
+- [x] Make it a Monad
+- [x] Verify Laws
+- [] Add laws
+   - [x] Monad
+   - [x] Applicative
+   - [x] Apply
+   - [x] Chain
+   - [x] Functor
 - [ ] Add Demo / examples
 
 ### Inspiration
