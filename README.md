@@ -8,7 +8,6 @@ IMO: A good way to learn a new language or tool is to implement something not to
 - [x] Function Signatures
 - [x] Make it a Monad
 - [x] Verify Laws
-- [ ] Add laws to repo
    - [x] Monad
    - [x] Applicative
    - [x] Apply
@@ -16,6 +15,7 @@ IMO: A good way to learn a new language or tool is to implement something not to
    - [x] Functor
    - [x] Semigroup
    - [x] Monoid
+- [ ] Add laws to repo   
 - [ ] Add Demo / examples
 
 ### Inspiration
