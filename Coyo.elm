@@ -11,7 +11,7 @@ module Coyo exposing
 
 
 import Html exposing (text)
-import List exposing (map, concatMap)
+import List exposing (map, concatMap, append)
 
 
 type Coyoneda f a
