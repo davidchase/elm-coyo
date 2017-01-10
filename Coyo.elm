@@ -2,7 +2,7 @@ module Coyo exposing
   ( liftCoyo
   , fmap
   , chain
-  , ap
+  , apply
   , pure
   , empty
   , concat
@@ -14,48 +14,55 @@ import Html exposing (text)
 import List exposing (map, concatMap, append)
 
 
-type Coyoneda f a
-    = Coyoneda f a
+type alias Coyo f a =
+    { f : f, a : a }
 
 
-liftCoyo : b -> Coyoneda (a -> a) b
+liftCoyo : b -> Coyo (a -> a) b
 liftCoyo =
-    Coyoneda identity
+    Coyo identity
 
 
-fmap : (b -> c) -> Coyoneda (a -> b) d -> Coyoneda (a -> c) d
-fmap fn coyo =
-    case coyo of
-        Coyoneda f val ->
-            Coyoneda (fn << f) val
-            
-chain : (b -> Coyoneda (a -> b1) (List a)) -> Coyoneda (a1 -> b) (List a1) -> Coyoneda (a2 -> a2) (List b1)
-chain fn coyo =
-    case coyo of
-        Coyoneda f val ->
-            liftCoyo <| concatMap (lowerCoyo << fn << f) val
+lowerCoyo : Coyo (a -> b) (List a) -> List b
+lowerCoyo coyo =
+    List.map coyo.f coyo.a
 
-ap : Coyoneda (a -> b -> c) (List a) -> Coyoneda (a1 -> b) (List a1) -> Coyoneda (a2 -> a2) (List c)
+
+chain : (d -> Coyo (a -> c) (List a)) -> Coyo (b -> d) (List b) -> Coyo (a -> a) (List c)
+chain f coyo =
+    liftCoyo <| List.concatMap (lowerCoyo << f << coyo.f) coyo.a
+
+
+fmap : (b -> c) -> Coyo (a -> b) d -> Coyo (a -> c) d
+fmap f coyo =
+    Coyo (f << coyo.f) coyo.a
+
+
+ap : List (a -> b) -> List a -> List b
 ap f g =
-    chain (\fn -> fmap fn <| g) <| f
+    concatMap (\fn -> map fn <| g) <| f
+
+
+apply : Coyo (a -> b -> c) (List a) -> Coyo (b -> b) (List b) -> Coyo (a -> a) (List c)
+apply m n =
+    liftCoyo <| ap (lowerCoyo m) (lowerCoyo n)
+
+
+concat : Coyo (a -> c) (List a) -> Coyo (b -> c) (List b) -> Coyo (a -> a) (List c)
+concat u v =
+    liftCoyo <| append (lowerCoyo u) <| lowerCoyo v
+
 
 toList : a -> List a
 toList fn =
     fn :: []
 
-concat : Coyoneda (a -> b) (List a) -> Coyoneda (a1 -> b) (List a1) -> Coyoneda (a2 -> a2) (List b)
-concat u v = liftCoyo <| append (lowerCoyo u) <| lowerCoyo v
 
-pure : b -> Coyoneda (a -> a) (List b)
-pure =
-    liftCoyo << toList
-
-empty : Coyoneda (a -> a) (List b)
+empty : Coyo (a -> a) (List b)
 empty =
     liftCoyo []
 
-lowerCoyo : Coyoneda (a -> b) (List a) -> List b
-lowerCoyo coyo =
-    case coyo of
-        Coyoneda f val ->
-            map f val
+
+pure : b -> Coyo (a -> a) (List b)
+pure =
+    liftCoyo << toList
