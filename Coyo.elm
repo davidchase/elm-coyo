@@ -43,7 +43,7 @@ ap f g =
     concatMap (\fn -> map fn <| g) <| f
 
 
-apply : Coyo (a -> b -> c) (List a) -> Coyo (d -> b) (List d) -> Coyo (a -> a) (List c)
+apply : Coyo (a -> b -> c) (List a) -> Coyo (b -> b) (List b) -> Coyo (a -> a) (List c)
 apply m n =
     liftCoyo <| ap (lowerCoyo m) (lowerCoyo n)
 
